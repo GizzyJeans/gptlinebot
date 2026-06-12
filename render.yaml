@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: line-ai-bot
+    env: docker
+    plan: starter
+    autoDeploy: false
+    disk:
+      name: line-ai-bot-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        value: /app/data/line-ai-bot.sqlite
+      - key: BOT_DISPLAY_NAME
+        value: 小幫手
+      - key: MAX_CONTEXT_MESSAGES
+        value: 12
+      - key: RATE_LIMIT_SECONDS
+        value: 10
+      - key: OPENAI_MODEL
+        value: gpt-5.5
+      - key: LINE_CHANNEL_SECRET
+        sync: false
+      - key: LINE_CHANNEL_ACCESS_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
